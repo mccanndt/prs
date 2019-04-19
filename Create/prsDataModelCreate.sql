@@ -1,5 +1,5 @@
 -- -----------------------------------------------------
--- Schema prs
+-- Delete, Create, and Use Schema prs
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS prs;
 CREATE SCHEMA IF NOT EXISTS prs;
