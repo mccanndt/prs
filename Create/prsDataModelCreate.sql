@@ -104,6 +104,12 @@ CREATE TABLE purchaserequestlineitem (
 );
 
 -- -----------------------------------------------------
+-- Create a user and grant privileges to that user
+-- -----------------------------------------------------
+CREATE USER IF NOT EXISTS prs_user@localhost IDENTIFIED BY 'sesame';
+GRANT SELECT, INSERT, DELETE, UPDATE ON prs.* TO prs_user@localhost;
+
+-- -----------------------------------------------------
 -- Insert users
 -- -----------------------------------------------------
 INSERT INTO user (ID, UserName, Password, FirstName, LastName, PhoneNumber, Email, IsReviewer, IsAdmin) VALUES 
