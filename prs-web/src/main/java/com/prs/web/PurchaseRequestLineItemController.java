@@ -43,6 +43,22 @@ public class PurchaseRequestLineItemController {
 		}
 		return jr;
 	}
+	
+	@GetMapping("/lines-for-pr/{id}")
+	public JsonResponse getLineItemsForPurchaseRequest(@PathVariable int id) {
+		JsonResponse jr = null;
+		try {
+			if (purchaseRequestRepo.existsById(id)) {
+				PurchaseRequest pr = purchaseRequestRepo.findById(id).orElse(null);
+				jr = JsonResponse.getInstance(purchaseRequestLineItemRepo.findByPurchaseRequest(pr));
+			} else {
+				jr = JsonResponse.getInstance("No purchaseRequest found for id: " + id);
+			}
+		} catch (Exception e) {
+			jr = JsonResponse.getInstance(e);
+		}
+		return jr;
+	}
 
 	@PostMapping("/")
 	public JsonResponse add(@RequestBody PurchaseRequestLineItem prli) {
