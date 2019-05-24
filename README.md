@@ -1,4 +1,4 @@
 # prs
 Purchase Request System for capstone project
 
-This is a README
+Be sure to run the prsDatabaseCreate.sql script first.
