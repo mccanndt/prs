@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.prs.business.JsonResponse;
+import com.prs.business.PurchaseRequest;
 import com.prs.business.PurchaseRequestLineItem;
 import com.prs.db.PurchaseRequestLineItemRepository;
+import com.prs.db.PurchaseRequestRepository;
 
 @RestController
 @RequestMapping("/purchase-request-line-items")
@@ -13,6 +15,8 @@ public class PurchaseRequestLineItemController {
 
 	@Autowired
 	private PurchaseRequestLineItemRepository purchaseRequestLineItemRepo;
+	@Autowired
+	private PurchaseRequestRepository purchaseRequestRepo;
 
 	@GetMapping("/")
 	public JsonResponse getAll() {
@@ -97,11 +101,14 @@ public class PurchaseRequestLineItemController {
 
 	private void calculatePurchaseRequestTotal(PurchaseRequestLineItem prli) {
 		double sum = 0;
-		Iterable<PurchaseRequestLineItem> prlis = purchaseRequestLineItemRepo.findByPurchaseRequest(prli.getPurchaseRequest());
-		for(PurchaseRequestLineItem li : prlis) {
-			sum += li.getQuantity() * prli.getProduct().getPrice();
+		PurchaseRequest pr = prli.getPurchaseRequest();
+		Iterable<PurchaseRequestLineItem> prlis = purchaseRequestLineItemRepo.findByPurchaseRequest(pr);
+		for (PurchaseRequestLineItem li : prlis) {
+			sum += li.getQuantity() * li.getProduct().getPrice();
 		}
 		prli.getPurchaseRequest().setTotal(sum);
+
+		purchaseRequestRepo.save(pr);
 	}
 
 }

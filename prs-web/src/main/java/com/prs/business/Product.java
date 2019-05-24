@@ -35,8 +35,7 @@ public class Product {
 		this.photoPath = photoPath;
 	}
 
-	public Product(int id, Vendor vendor, String partNumber, String name, double price, String unit,
-			String photoPath) {
+	public Product(int id, Vendor vendor, String partNumber, String name, double price, String unit, String photoPath) {
 		this.id = id;
 		this.vendor = vendor;
 		this.partNumber = partNumber;

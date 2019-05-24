@@ -1,4 +1,4 @@
-package com.prs;
+package com.prs.web;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -11,21 +11,21 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.prs.business.User;
+import com.prs.business.Vendor;
 
 @RunWith(SpringRunner.class)
 @JsonTest
-public class UserJsonTests {
+public class VendorJsonTests {
 
 	@Autowired
-	private JacksonTester<User> json;
+	private JacksonTester<Vendor> json;
 
 	@Test
 	public void serializeUserJsonTest() {
-		User user = new User("userName", "password", "firstName", "lastName", "phoneNumber", "email", true, true);
+		Vendor vendor = new Vendor("code", "name", "address", "city", "st", "zip", "phoneNumber", "email", true);
 
 		try {
-			assertThat(json.write(user)).extractingJsonPathStringValue("$.password").isEqualTo("password");
+			assertThat(json.write(vendor)).extractingJsonPathStringValue("$.name").isEqualTo("name");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

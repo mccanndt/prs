@@ -1,4 +1,4 @@
-package com.prs;
+package com.prs.web;
 
 import static org.junit.Assert.*;
 
@@ -34,7 +34,7 @@ public class ProductTests {
 	public void testProductAdd() {
 		Iterable<Vendor> vendors = vendorRepo.findAll();
 		Vendor v = vendors.iterator().next();
-		
+
 		Product p = new Product(v, "partNumber", "name", 99.99, "unit", "photoPath");
 		assertNotNull(productRepo.save(p));
 		assertEquals("partNumber", p.getPartNumber());

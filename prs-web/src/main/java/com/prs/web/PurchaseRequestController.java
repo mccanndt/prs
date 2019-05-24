@@ -165,7 +165,7 @@ public class PurchaseRequestController {
 		}
 		return jr;
 	}
-	
+
 	@PutMapping("/reject")
 	public JsonResponse reject(@RequestBody PurchaseRequest pr) {
 		JsonResponse jr = null;

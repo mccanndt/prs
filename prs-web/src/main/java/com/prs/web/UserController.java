@@ -101,7 +101,6 @@ public class UserController {
 			Optional<User> user = userRepo.findByUserNameAndPassword(u.getUserName(), u.getPassword());
 			if (user.isPresent()) {
 				jr = JsonResponse.getInstance(user);
-				// TODO: Set active
 			} else {
 				jr = JsonResponse.getInstance("No user found for username: " + u.getUserName());
 			}

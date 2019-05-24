@@ -1,4 +1,4 @@
-package com.prs;
+package com.prs.db;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -13,26 +13,25 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.prs.business.User;
-import com.prs.db.UserRepository;
+import com.prs.business.Vendor;
+import com.prs.db.VendorRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = Replace.NONE)
-public class UserRepoTests {
+public class VendorRepoTests {
 
 	@Autowired
-	private UserRepository userRepo;
+	private VendorRepository vendorRepo;
 	@Autowired
 	private TestEntityManager entityManager;
 
 	@Test
-	public void findByUserNameShouldReturnUser() {
-		entityManager
-				.persist(new User("userName", "password", "firstName", "lastName", "phoneNumber", "email", true, true));
+	public void findByVendorNameShouldReturnVendor() {
+		entityManager.persist(new Vendor("code", "name", "address", "city", "st", "zip", "phoneNumber", "email", true));
 
-		Optional<User> u = userRepo.findByUserName("userName");
+		Optional<Vendor> v = vendorRepo.findByName("name");
 
-		assertThat(u.get().getFirstName()).isEqualTo("firstName");
+		assertThat(v.get().getName()).isEqualTo("name");
 	}
 }

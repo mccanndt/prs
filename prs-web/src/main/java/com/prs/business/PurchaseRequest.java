@@ -33,8 +33,7 @@ public class PurchaseRequest {
 	}
 
 	public PurchaseRequest(User user, String description, String justification, LocalDate dateNeeded,
-			String deliveryMode, String status, double total, LocalDateTime submittedDate,
-			String reasonForRejection) {
+			String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		this.user = user;
 		this.description = description;
 		this.justification = justification;
@@ -47,8 +46,7 @@ public class PurchaseRequest {
 	}
 
 	public PurchaseRequest(int id, User user, String description, String justification, LocalDate dateNeeded,
-			String deliveryMode, String status, double total, LocalDateTime submittedDate,
-			String reasonForRejection) {
+			String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		this.id = id;
 		this.user = user;
 		this.description = description;

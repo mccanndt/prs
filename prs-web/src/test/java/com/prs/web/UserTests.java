@@ -1,4 +1,4 @@
-package com.prs;
+package com.prs.web;
 
 import static org.junit.Assert.*;
 
