@@ -119,8 +119,10 @@ public class PurchaseRequestController {
 			if (purchaseRequestRepo.existsById(pr.getId())) {
 				if (pr.getTotal() <= 50.00) {
 					pr.setStatus("Approved");
+					pr.setSubmittedDate(LocalDateTime.now());
 				} else {
 					pr.setStatus("Review");
+					pr.setSubmittedDate(LocalDateTime.now());
 				}
 				jr = JsonResponse.getInstance(purchaseRequestRepo.save(pr));
 			} else {
