@@ -1,6 +1,7 @@
 package com.prs.web;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import com.prs.business.PurchaseRequest;
 import com.prs.business.User;
 import com.prs.db.PurchaseRequestRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/purchase-requests")
 public class PurchaseRequestController {
@@ -75,20 +77,16 @@ public class PurchaseRequestController {
 		return jr;
 	}
 
-	@DeleteMapping("/")
-	public JsonResponse delete(@RequestBody PurchaseRequest pr) {
+	@DeleteMapping("/{id}")
+	public JsonResponse delete(@PathVariable int id) {
 		JsonResponse jr = null;
-		// NOTE: May need to enhance execption handling if more than one excpetion type
-		// needs to be caught
 		try {
-			if (purchaseRequestRepo.existsById(pr.getId())) {
-				purchaseRequestRepo.delete(pr);
-				jr = JsonResponse.getInstance("PurchaseRequest deleted");
-			} else {
-				jr = JsonResponse.getInstance(
-						"PurchaseRequest ID: " + pr.getId() + " does not exist and you are attempting to delete it.");
-			}
-
+			Optional<PurchaseRequest> purchaseRequest = purchaseRequestRepo.findById(id);
+			if (purchaseRequest.isPresent()) {
+				purchaseRequestRepo.deleteById(id);
+				jr = JsonResponse.getInstance(purchaseRequest);
+			} else
+				jr = JsonResponse.getInstance("Delete failed. No purchaseRequest for id: " + id);
 		} catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
 		}

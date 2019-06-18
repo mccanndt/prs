@@ -9,6 +9,7 @@ import com.prs.business.JsonResponse;
 import com.prs.business.User;
 import com.prs.db.UserRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -74,20 +75,16 @@ public class UserController {
 		return jr;
 	}
 
-	@DeleteMapping("/")
-	public JsonResponse delete(@RequestBody User u) {
+	@DeleteMapping("/{id}")
+	public JsonResponse delete(@PathVariable int id) {
 		JsonResponse jr = null;
-		// NOTE: May need to enhance execption handling if more than one excpetion type
-		// needs to be caught
 		try {
-			if (userRepo.existsById(u.getId())) {
-				userRepo.delete(u);
-				jr = JsonResponse.getInstance("User deleted");
-			} else {
-				jr = JsonResponse
-						.getInstance("User ID: " + u.getId() + " does not exist and you are attempting to delete it.");
-			}
-
+			Optional<User> user = userRepo.findById(id);
+			if (user.isPresent()) {
+				userRepo.deleteById(id);
+				jr = JsonResponse.getInstance(user);
+			} else
+				jr = JsonResponse.getInstance("Delete failed. No user for id: " + id);
 		} catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
 		}

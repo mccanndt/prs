@@ -1,5 +1,7 @@
 package com.prs.web;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,6 +9,7 @@ import com.prs.business.JsonResponse;
 import com.prs.business.Vendor;
 import com.prs.db.VendorRepository;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/vendors")
 public class VendorController {
@@ -72,20 +75,16 @@ public class VendorController {
 		return jr;
 	}
 
-	@DeleteMapping("/")
-	public JsonResponse delete(@RequestBody Vendor v) {
+	@DeleteMapping("/{id}")
+	public JsonResponse delete(@PathVariable int id) {
 		JsonResponse jr = null;
-		// NOTE: May need to enhance execption handling if more than one excpetion type
-		// needs to be caught
 		try {
-			if (vendorRepo.existsById(v.getId())) {
-				vendorRepo.delete(v);
-				jr = JsonResponse.getInstance("Vendor deleted");
-			} else {
-				jr = JsonResponse.getInstance(
-						"Vendor ID: " + v.getId() + " does not exist and you are attempting to delete it.");
-			}
-
+			Optional<Vendor> vendor = vendorRepo.findById(id);
+			if (vendor.isPresent()) {
+				vendorRepo.deleteById(id);
+				jr = JsonResponse.getInstance(vendor);
+			} else
+				jr = JsonResponse.getInstance("Delete failed. No vendor for id: " + id);
 		} catch (Exception e) {
 			jr = JsonResponse.getInstance(e);
 		}
