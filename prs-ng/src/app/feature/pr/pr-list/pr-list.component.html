@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">[{{title}}]</span>
+    <span><a routerLink="/pr/create">
+        <img id="createnew" width="20" height="20" src="assets/add-icon.png" title="Add New">
+      </a></span>
+  </div>
+</div>
+
+<p *ngIf="!prs">Loading...</p>
+<table class="table table-sm" *ngIf="prs">
+  <tr>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>User</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Description</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Justification</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Date Needed</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Delivery Mode</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Status</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Submitted Date</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Total</u></a></th>
+    <th class="table-secondary">Action</th>
+  </tr>
+  <tr *ngFor="let pr of prs">
+    <td>{{ pr.id }}</td>
+    <td>{{ pr.user.userName }}</td>
+    <td>{{ pr.description }}</td>
+    <td>{{ pr.justification }}</td>
+    <td>{{ pr.dateNeeded | date:'mediumDate' }}</td>
+    <td>{{ pr.deliveryMode }}</td>
+    <td>{{ pr.status }}</td>
+    <td>{{ pr.submittedDate | date:'medium' }}</td>
+    <td>{{ pr.total | currency }}</td>
+    <td class='actions'>
+      <a routerLink='/pr/detail/{{pr.id}}'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
+      <a routerLink='/pr/edit/{{pr.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+      <a routerLink='/pr/lines/{{pr.id}}'><img src='assets/lines.png' width='20' height='20' title='Lines'></a>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,45 @@
+<app-menu></app-menu>
+<div id='component'>
+  <div id="pagetitle">
+    <span>[{{title}}]</span>
+  </div>
+  <p *ngIf='!pr'>Loading...</p>
+  <div *ngIf='pr'>
+
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="pruser">User:</label>
+      <select [(ngModel)]="pr.user.id" name='User' type="text" class="form-control col-sm-6" id="pruser"
+        aria-describedby="userHelp" placeholder="User">
+        <option [ngValue]="user.id" *ngFor='let user of users' [selected]="user.id == pr.user.id">{{ user.userName }}</option>
+      </select>
+      <small id="userHelp" class="form-text text-muted col-sm-2">Purchase Request's User</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="prdescription">Description:</label>
+      <input [(ngModel)]='pr.description' name='Description' type="text" class="form-control col-sm-6"
+        id="prdescription" aria-describedby="descriptionHelp" placeholder="Description">
+      <small id="descriptionHelp" class="form-text text-muted col-sm-2">Purchase Request's Description</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="prjustification">Justification:</label>
+      <input [(ngModel)]='pr.justification' name='Justification' type="text" class="form-control col-sm-6"
+        id="prjustification" aria-describedby="justificationHelp" placeholder="Justification">
+      <small id="justificationHelp" class="form-text text-muted col-sm-2">Purchase Request's Justification</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="prdateneeded">Date Needed:</label>
+      <input [(ngModel)]='pr.dateNeeded' name='DateNeeded' type="date" class="form-control col-sm-6" id="prdateneeded"
+        aria-describedby="dateNeededHelp" placeholder="Date Needed">
+      <small id="dateNeededHelp" class="form-text text-muted col-sm-2">Purchase Request's Date Needed</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="prdeliverymode">Delivery Mode:</label>
+      <input [(ngModel)]='pr.deliveryMode' name='DeliveryMode' type="text" class="form-control col-sm-6"
+        id="prdeliverymode" aria-describedby="deliveryModeHelp" placeholder="Delivery Mode">
+      <small id="deliveryModeHelp" class="form-text text-muted col-sm-2">Purchase Request's Delivery Mode</small>
+    </div>
+    <div class='form-group'>
+      <button (click)='edit()' class='btn btn-primary'>Edit</button>
+    </div>
+  </div>
+</div>

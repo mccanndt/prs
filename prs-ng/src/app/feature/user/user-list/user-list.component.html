@@ -1,0 +1,35 @@
+<app-menu></app-menu>
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">[{{title}}]</span>
+    <span><a routerLink="/user/create">
+        <img id="createnew" width="20" height="20" src="assets/add-icon.png" title="Add New">
+      </a></span>
+  </div>
+</div>
+
+<p *ngIf="!users">Loading...</p>
+<table class="table table-sm" *ngIf="users">
+  <tr>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>UserName</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Name</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Phone</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Email</u></a></th>
+    <th class="table-secondary">Privilege</th>
+    <th class="table-secondary">Action</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{ user.id }}</td>
+    <td>{{ user.userName }}</td>
+    <td>{{ user.lastName }}, {{ user.firstName }}</td>
+    <td>{{ user.phoneNumber }}</td>
+    <td>{{ user.email }}</td>
+    <td>{{ user.reviewer ? "Rvw" : "" }} {{ user.admin ? "Adm" : "" }}</td>
+    <td class='actions'>
+      <a routerLink='/user/detail/{{user.id}}'><img src='assets/details.png' width='20' height='20' title='Detail'></a>
+      <a routerLink='/user/edit/{{user.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+    </td>
+
+  </tr>
+</table>
