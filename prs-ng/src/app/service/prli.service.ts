@@ -13,6 +13,10 @@ export class PrliService {
 
   constructor(private http: HttpClient) { }
 
+  get(prId: string): Observable<JsonResponse> {
+    return this.http.get(this.url + prId) as Observable<JsonResponse>;
+  }
+
   getByPurchaseRequest(prId: string): Observable<JsonResponse> {
     return this.http.get(this.url + "lines-for-pr/" + prId) as Observable<JsonResponse>;
   }

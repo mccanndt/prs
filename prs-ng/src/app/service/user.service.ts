@@ -32,4 +32,8 @@ export class UserService {
   remove(user: User): Observable<JsonResponse> {
     return this.http.delete(this.url + user.id) as Observable<JsonResponse>;
   }
+
+  login(user: User): Observable<JsonResponse> {
+    return this.http.post(this.url + "authenticate", user) as Observable<JsonResponse>;
+  }
 }

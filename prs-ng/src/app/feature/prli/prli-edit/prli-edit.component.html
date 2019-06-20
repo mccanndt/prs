@@ -1,3 +1,29 @@
-<p>
-  prli-edit works!
-</p>
+<app-menu></app-menu>
+<div id='component'>
+  <div id="pagetitle">
+    <span>[{{title}}] | </span>
+    <span *ngIf="pr"><a routerLink="/pr/lines/{{ prli.purchaseRequest.id }}">Back to list</a></span>
+  </div>
+  <p *ngIf='!prli'>Loading...</p>
+  <div *ngIf='prli'>
+
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="prliproduct">Product:</label>
+      <select [(ngModel)]="prli.product.id" [compareWith]='compareFn' name='Product' type="text" class="form-control col-sm-6" id="prliproduct"
+        aria-describedby="productHelp" placeholder="Product">
+        <option [ngValue]="product.id" *ngFor='let product of products' [selected]="product.id == prli.product.id" >{{ product.name }} | {{ product.vendor.name }}
+        </option>
+      </select>
+      <small id="productHelp" class="form-text text-muted col-sm-2">Purchase Request Line's Product</small>
+    </div>
+    <div class="form-group row">
+      <label class='col-form-label col-sm-2' for="prliquantity">Quantity:</label>
+      <input [(ngModel)]='prli.quantity' name='Quantity' type="number" class="form-control col-sm-6" id="prliquantity"
+        aria-describedby="quantityHelp" placeholder="Quantity">
+      <small id="quantityHelp" class="form-text text-muted col-sm-2">Purchase Request Line's Quantity</small>
+    </div>
+    <div class='form-group'>
+      <button (click)='edit()' class='btn btn-primary'>Edit</button>
+    </div>
+  </div>
+</div>

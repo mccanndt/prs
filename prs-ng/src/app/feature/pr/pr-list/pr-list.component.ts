@@ -13,7 +13,6 @@ export class PrListComponent implements OnInit {
   jr: JsonResponse;
   prs: PurchaseRequest[];
   title: string = "Purchase-Request-List";
-  formattedDate: Date;
   
   constructor(private prSvc: PrService) { }
 

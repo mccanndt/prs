@@ -28,7 +28,7 @@
       </a></span>
   </div>
 </div>
-<table class="table table-sm">
+<table *ngIf="prlis" class="table table-sm">
   <tr>
     <th class="table-secondary">Id</th>
     <th class="table-secondary">Product</th>
@@ -37,7 +37,7 @@
     <th class="table-secondary">Line Total</th>
     <th class="table-secondary">Action</th>
   </tr>
-  <tr *ngIf="!prlis" class="table-danger">
+  <tr *ngIf="prlis.length==0" class="table-danger">
     <td>No line items yet. Please create a new one!</td>
     <td></td>
     <td></td>
@@ -45,17 +45,18 @@
     <td></td>
     <td></td>
   </tr>
-  <ng-container *ngIf="prlis">
-    <tr *ngFor="let prli of prlis">
-      <td>{{ prli.id }}</td>
-      <td>{{ prli.product.name }}</td>
-      <td>{{ prli.quantity }}</td>
-      <td>{{ prli.price | currency }}</td>
-      <td>{{ lineTotal | currency }}</td>
-      <td class='actions'>
-        <a routerLink='/prli/edit/{{pr.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
-        <a (click)="remove()"><img src='assets/delete.jpg' width='20' height='20' title='Remove'></a>
-      </td>
-    </tr>
-  </ng-container>
+  <tr *ngFor="let prli of prlis">
+    <td>{{ prli.id }}</td>
+    <td>{{ prli.product.name }}</td>
+    <td>{{ prli.quantity }}</td>
+    <td>{{ prli.product.price | currency }}</td>
+    <td>{{ prli.quantity * prli.product.price | currency }}</td>
+    <td class='actions'>
+      <a routerLink='/prli/edit/{{prli.id}}'><img src='assets/pencil-icon.png' width='20' height='20' title='Edit'></a>
+      <a routerLink='/prli/remove/{{pr.id}}/{{prli.id}}'><img src='assets/delete.jpg' width='20' height='20' title='Remove'></a>
+    </td>
+  </tr>
 </table>
+<div class='form-group'>
+  <button (click)='submitForReview()' class='btn btn-primary'>Submit For Review</button>
+</div>

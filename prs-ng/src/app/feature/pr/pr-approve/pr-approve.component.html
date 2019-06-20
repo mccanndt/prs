@@ -1,3 +1,57 @@
-<p>
-  pr-approve works!
-</p>
+<app-menu></app-menu>
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">[{{title}}]</span>
+    <span><a routerLink="/pr/list">Back to list</a></span>
+  </div>
+</div>
+<p *ngIf="!pr">Loading...</p>
+<table class="table table-sm" *ngIf="pr">
+  <tr>
+    <th class="table-secondary">Id</th>
+    <th class="table-secondary">Description</th>
+    <th class="table-secondary">Status</th>
+    <th class="table-secondary">Total</th>
+  </tr>
+  <tr>
+    <td>{{ pr.id }}</td>
+    <td>{{ pr.description }}</td>
+    <td>{{ pr.status }}</td>
+    <td>{{ pr.total | currency }}</td>
+  </tr>
+</table>
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">[{{lineTitle}}]</span>
+    <span *ngIf="pr"><a routerLink="/prli/create/{{pr.id}}">
+        <img id="createnew" width="20" height="20" src="assets/add-icon.png" title="Add New">
+      </a></span>
+  </div>
+</div>
+<table *ngIf="prlis" class="table table-sm">
+  <tr>
+    <th class="table-secondary">Id</th>
+    <th class="table-secondary">Product</th>
+    <th class="table-secondary">Quantity</th>
+    <th class="table-secondary">Price</th>
+    <th class="table-secondary">Line Total</th>
+  </tr>
+  <tr *ngIf="prlis.length==0" class="table-danger">
+    <td>No line items yet. Please create a new one!</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr *ngFor="let prli of prlis">
+    <td>{{ prli.id }}</td>
+    <td>{{ prli.product.name }}</td>
+    <td>{{ prli.quantity }}</td>
+    <td>{{ prli.product.price | currency }}</td>
+    <td>{{ prli.quantity * prli.product.price | currency }}</td>
+  </tr>
+</table>
+<div class='form-group'>
+  <button (click)='approve()' class='btn btn-primary'>Approve</button>
+</div>

@@ -32,4 +32,12 @@ export class PrService {
   remove(pr: PurchaseRequest): Observable<JsonResponse> {
     return this.http.delete(this.url + pr.id) as Observable<JsonResponse>;
   }
+
+  submit(pr: PurchaseRequest): Observable<JsonResponse> {
+    return this.http.put(this.url + "submit-review", pr) as Observable<JsonResponse>;
+  }
+
+  review(userId: string): Observable<JsonResponse> {
+    return this.http.get(this.url + "list-review/" + userId) as Observable<JsonResponse>;
+  }
 }

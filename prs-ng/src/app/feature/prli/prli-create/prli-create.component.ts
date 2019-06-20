@@ -31,7 +31,6 @@ export class PrliCreateComponent implements OnInit {
         this.jr = jresp;
         if (this.jr.errors == null) {
           this.products = this.jr.data as Product[];
-          console.log(this.products);
         } else {
           console.log("Error getting products");
         }
@@ -61,16 +60,14 @@ export class PrliCreateComponent implements OnInit {
   }
 
   create() {
-    console.log(this.prli);
     this.prliSvc.create(this.prli).subscribe(
       jresp => {
         this.jr = jresp;
         if (this.jr.errors == null) {
-          this.router.navigate(['/pr/list']);
+          this.router.navigate([`/pr/lines/${this.pr.id}`]);
           console.log(this.pr);
         } else {
           console.log("Error getting purchase request");
-          console.log(this.jr.errors);
           // TODO: Implement error handling
         }
       }

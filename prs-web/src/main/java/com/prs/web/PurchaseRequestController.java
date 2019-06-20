@@ -10,6 +10,7 @@ import com.prs.business.JsonResponse;
 import com.prs.business.PurchaseRequest;
 import com.prs.business.User;
 import com.prs.db.PurchaseRequestRepository;
+import com.prs.db.UserRepository;
 
 @CrossOrigin
 @RestController
@@ -18,6 +19,8 @@ public class PurchaseRequestController {
 
 	@Autowired
 	private PurchaseRequestRepository purchaseRequestRepo;
+	@Autowired
+	private UserRepository userRepo;
 
 	@GetMapping("/")
 	public JsonResponse getAll() {
@@ -138,6 +141,19 @@ public class PurchaseRequestController {
 	public JsonResponse listReview(@RequestBody User user) {
 		JsonResponse jr = null;
 		try {
+			Iterable<PurchaseRequest> prs = purchaseRequestRepo.findByStatusAndUserNot("Review", user);
+			jr = JsonResponse.getInstance(prs);
+		} catch (Exception e) {
+			jr = JsonResponse.getInstance(e);
+		}
+		return jr;
+	}
+	
+	@GetMapping("/list-review/{id}")
+	public JsonResponse listReview(@PathVariable int id) {
+		JsonResponse jr = null;
+		try {
+			User user = userRepo.findById(id).orElse(null);
 			Iterable<PurchaseRequest> prs = purchaseRequestRepo.findByStatusAndUserNot("Review", user);
 			jr = JsonResponse.getInstance(prs);
 		} catch (Exception e) {

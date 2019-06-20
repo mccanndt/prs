@@ -20,15 +20,19 @@ import { PrDetailComponent } from '@feature/pr/pr-detail/pr-detail.component';
 import { PrLinesComponent } from '@feature/pr/pr-lines/pr-lines.component';
 import { PrliCreateComponent } from '@feature/prli/prli-create/prli-create.component';
 import { PrliEditComponent } from '@feature/prli/prli-edit/prli-edit.component';
+import { UserLoginComponent } from '@feature/user/user-login/user-login.component';
+import { PrReviewComponent } from '@feature/pr/pr-review/pr-review.component';
+import { PrApproveComponent } from '@feature/pr/pr-approve/pr-approve.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/user/list', pathMatch: 'full' },
+  { path: '', redirectTo: '/user/login', pathMatch: 'full' },
 
   { path: 'user/list', component: UserListComponent },
   { path: 'user/create', component: UserCreateComponent },
   { path: 'user/edit/:id', component: UserEditComponent },
   { path: 'user/detail/:id', component: UserDetailComponent },
   { path: 'user/remove/:id', component: UserDetailComponent },
+  { path: 'user/login', component: UserLoginComponent },
 
   { path: 'vendor/list', component: VendorListComponent },
   { path: 'vendor/create', component: VendorCreateComponent },
@@ -48,9 +52,12 @@ const routes: Routes = [
   { path: 'pr/detail/:id', component: PrDetailComponent },
   { path: 'pr/remove/:id', component: PrDetailComponent },
   { path: 'pr/lines/:id', component: PrLinesComponent },
+  { path: 'pr/review', component: PrReviewComponent },
+  { path: 'pr/approve/:id', component: PrApproveComponent },
 
   { path: 'prli/create/:prId', component: PrliCreateComponent },
-  { path: 'prli/edit', component: PrliEditComponent },
+  { path: 'prli/edit/:id', component: PrliEditComponent },
+  { path: 'prli/remove/:id/:prliId', component: PrLinesComponent },
 
   { path: 'about', component: AboutComponent },
   

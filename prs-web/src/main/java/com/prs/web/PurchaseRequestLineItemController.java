@@ -1,7 +1,5 @@
 package com.prs.web;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -101,10 +99,11 @@ public class PurchaseRequestLineItemController {
 	public JsonResponse delete(@PathVariable int id) {
 		JsonResponse jr = null;
 		try {
-			Optional<PurchaseRequestLineItem> purchaseRequestLineItem = purchaseRequestLineItemRepo.findById(id);
-			if (purchaseRequestLineItem.isPresent()) {
-				purchaseRequestLineItemRepo.deleteById(id);
-				jr = JsonResponse.getInstance(purchaseRequestLineItem);
+			if (purchaseRequestLineItemRepo.existsById(id)) {
+				PurchaseRequestLineItem prli = purchaseRequestLineItemRepo.findById(id).orElse(null);
+				purchaseRequestLineItemRepo.deleteById(prli.getId());
+				jr = JsonResponse.getInstance(prli);
+				calculatePurchaseRequestTotal(prli);
 			} else
 				jr = JsonResponse.getInstance("Delete failed. No purchaseRequestLineItem for id: " + id);
 		} catch (Exception e) {

@@ -1,3 +1,28 @@
-<p>
-  pr-review works!
-</p>
+<app-menu></app-menu>
+<div class="component-content">
+  <div class="lefthalf">
+    <span class="component-title">[{{title}}]</span>
+    <span><a routerLink="/pr/list">Back to list</a></span>
+  </div>
+</div>
+<p *ngIf="!prs">Loading...</p>
+<table class="table table-sm" *ngIf="prs">
+  <tr>
+    <th class="table-secondary">Id</th>
+    <th class="table-secondary">User</th>
+    <th class="table-secondary">Description</th>
+    <th class="table-secondary">Status</th>
+    <th class="table-secondary">Total</th>
+    <th class="table-secondary">Action</th>
+  </tr>
+  <tr *ngFor="let pr of prs">
+    <td>{{ pr.id }}</td>
+    <td>{{ pr.user.userName }}</td>
+    <td>{{ pr.description }}</td>
+    <td>{{ pr.status }}</td>
+    <td>{{ pr.total | currency }}</td>
+    <td class='actions'>
+      <a routerLink='/pr/approve/{{pr.id}}'><img src='assets/review.png' width='20' height='20' title='Approve'></a>
+    </td>
+  </tr>
+</table>
