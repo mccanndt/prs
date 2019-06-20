@@ -18,6 +18,8 @@ import { PrCreateComponent } from '@feature/pr/pr-create/pr-create.component';
 import { PrEditComponent } from '@feature/pr/pr-edit/pr-edit.component';
 import { PrDetailComponent } from '@feature/pr/pr-detail/pr-detail.component';
 import { PrLinesComponent } from '@feature/pr/pr-lines/pr-lines.component';
+import { PrliCreateComponent } from '@feature/prli/prli-create/prli-create.component';
+import { PrliEditComponent } from '@feature/prli/prli-edit/prli-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/user/list', pathMatch: 'full' },
@@ -46,6 +48,9 @@ const routes: Routes = [
   { path: 'pr/detail/:id', component: PrDetailComponent },
   { path: 'pr/remove/:id', component: PrDetailComponent },
   { path: 'pr/lines/:id', component: PrLinesComponent },
+
+  { path: 'prli/create/:prId', component: PrliCreateComponent },
+  { path: 'prli/edit', component: PrliEditComponent },
 
   { path: 'about', component: AboutComponent },
   

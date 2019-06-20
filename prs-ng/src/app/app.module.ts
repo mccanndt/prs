@@ -25,6 +25,11 @@ import { PrEditComponent } from './feature/pr/pr-edit/pr-edit.component';
 import { PrListComponent } from './feature/pr/pr-list/pr-list.component';
 import { SortPipe } from '@pipe/sort.pipe';
 import { PrLinesComponent } from './feature/pr/pr-lines/pr-lines.component';
+import { PrliCreateComponent } from './feature/prli/prli-create/prli-create.component';
+import { PrliEditComponent } from './feature/prli/prli-edit/prli-edit.component';
+import { PrApproveComponent } from './feature/pr/pr-approve/pr-approve.component';
+import { PrReviewComponent } from './feature/pr/pr-review/pr-review.component';
+import { UserLoginComponent } from './feature/user/user-login/user-login.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,12 @@ import { PrLinesComponent } from './feature/pr/pr-lines/pr-lines.component';
     PrEditComponent,
     PrListComponent,
     SortPipe,
-    PrLinesComponent
+    PrLinesComponent,
+    PrliCreateComponent,
+    PrliEditComponent,
+    PrApproveComponent,
+    PrReviewComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
