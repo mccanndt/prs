@@ -1,8 +1,7 @@
-<app-menu></app-menu>
+<app-menu *ngIf="loggedInUser"></app-menu>
 <div class="component-content">
   <div class="lefthalf">
     <span class="component-title">[{{title}}]</span>
-    <span><a routerLink="/pr/list">Back to list</a></span>
   </div>
 </div>
 <p *ngIf="!prs">Loading...</p>
@@ -15,6 +14,14 @@
     <th class="table-secondary">Total</th>
     <th class="table-secondary">Action</th>
   </tr>
+  <tr *ngIf="prs.length==0" class="table-success">
+      <td>All caught up! Nothing to review. Please check back later.</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
   <tr *ngFor="let pr of prs">
     <td>{{ pr.id }}</td>
     <td>{{ pr.user.userName }}</td>

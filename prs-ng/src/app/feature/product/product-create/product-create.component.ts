@@ -26,7 +26,6 @@ export class ProductCreateComponent implements OnInit {
         this.jr = jresp;
         if (this.jr.errors == null) {
           this.vendors = this.jr.data as Vendor[];
-          console.log(this.vendors);
         } else {
           console.log("Error getting vendors");
         }

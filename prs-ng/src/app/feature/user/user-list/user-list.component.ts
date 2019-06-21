@@ -22,7 +22,6 @@ export class UserListComponent implements OnInit {
         this.jr = jresp;
         if (this.jr.errors == null) {
           this.users = this.jr.data as User[];
-          console.log(this.users);
         } else {
           console.log("Error getting users");
           // TODO: Implement error handling

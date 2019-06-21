@@ -1,24 +1,27 @@
 nav {
 	width:100%;
 	background-color: #454545;
-	padding: 12px 0;
-
+	padding: 10px 0;
 }
-ul {
-	padding: 0;
-	margin: 0;
-}
-li {
+.li {
 	display: inline-block;
 	text-align:center;
+	vertical-align: middle;
 }
-a {
+.anchor {
 	color: white;
 	text-decoration: none;
-	padding: 10px;
-	font-family: Tahoma;
 }
 
-a:hover {
+.anchor:hover {
 	background-color: black;
+}
+
+.user {
+	color: white;
+	padding: 7px 10px;
+}
+
+.home {
+	font-size: 1.5rem;
 }

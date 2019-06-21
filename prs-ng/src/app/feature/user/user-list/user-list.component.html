@@ -12,12 +12,12 @@
 <table class="table table-sm" *ngIf="users">
   <tr>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Id</u></a></th>
-    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>UserName</u></a></th>
+    <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Username</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Name</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Phone</u></a></th>
     <th class="table-secondary btn-link"><a class="btn btn-link font-weight-bold"><u>Email</u></a></th>
-    <th class="table-secondary">Privilege</th>
-    <th class="table-secondary">Action</th>
+    <th class="table-secondary"><div class="btn font-weight-bold">Privilege</div></th>
+    <th class="table-secondary"><div class="btn font-weight-bold">Action</div></th>
   </tr>
   <tr *ngFor="let user of users">
     <td>{{ user.id }}</td>

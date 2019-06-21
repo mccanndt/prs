@@ -52,6 +52,9 @@
     <td>{{ prli.quantity * prli.product.price | currency }}</td>
   </tr>
 </table>
-<div class='form-group'>
-  <button (click)='approve()' class='btn btn-primary'>Approve</button>
+<div class="form-group row">
+  <div *ngIf="pr.reasonForRejection == ''" class="col-1"><button (click)='approve()' class='btn btn-primary'>Approve</button></div>
+  <div *ngIf="pr.reasonForRejection != ''" class="col-1"><button (click)='reject()' class='btn btn-danger'>Reject</button></div>
+  <div class="col-6"><input [(ngModel)]='pr.reasonForRejection' name='ReasonForRejection' type="text"
+    class="form-control col-sm-6" placeholder="Reason for Rejection"></div>
 </div>

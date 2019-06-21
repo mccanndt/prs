@@ -22,7 +22,6 @@ export class PrListComponent implements OnInit {
         this.jr = jresp;
         if (this.jr.errors == null) {
           this.prs = this.jr.data as PurchaseRequest[];
-          console.log(this.prs);
         } else {
           console.log("Error getting purchase requests");
           // TODO: Implement error handling

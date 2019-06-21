@@ -54,7 +54,6 @@ export class PrLinesComponent implements OnInit {
         this.jr2 = jsrep2;
         if (this.jr2.errors == null) {
           this.prlis = this.jr2.data as PurchaseRequestLineItem[];
-          console.log(this.prlis);
         } else {
           console.log("Error getting purchase request");
           // TODO: Implement error handling
@@ -98,7 +97,6 @@ export class PrLinesComponent implements OnInit {
         this.jr = jresp;
         if (this.jr.errors == null) {
           this.router.navigate(['/pr/list']);
-          console.log(this.pr);
         } else {
           console.log("Error getting purchase request");
           // TODO: Implement error handling

@@ -40,4 +40,12 @@ export class PrService {
   review(userId: string): Observable<JsonResponse> {
     return this.http.get(this.url + "list-review/" + userId) as Observable<JsonResponse>;
   }
+
+  approve(pr: PurchaseRequest): Observable<JsonResponse> {
+    return this.http.put(this.url + "approve", pr) as Observable<JsonResponse>;
+  }
+
+  reject(pr: PurchaseRequest): Observable<JsonResponse> {
+    return this.http.put(this.url + "reject", pr) as Observable<JsonResponse>;
+  }
 }
